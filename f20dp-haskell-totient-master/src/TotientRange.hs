@@ -36,6 +36,11 @@ sumTotientEvalList :: (Int, Int) -> Int
 sumTotientEvalList (lower, upper) =
   sum (totients lower upper `using` evalList rseq)
 
+-- sequential, using parList strategy
+sumTotientParList :: (Int, Int) -> Int
+sumTotientParList (lower, upper) = 
+  sum (totients lower upper `using` parList rseq)
+
 -- TODO: add more sum totient implementations below using the
 -- evaluation strategies from the Control.Parallel.Strategies module.
 -- Then:

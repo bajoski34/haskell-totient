@@ -28,6 +28,10 @@ main = do
             nf
               sumTotientEvalList
               (1, 10)
+          bench "parList 1..10" $
+            nf
+              sumTotientParList
+              (1, 10)
               -- add parallel benchmarks here for 1..10 once you've
               -- implemented them in src/TotientRange.hs
         ],
@@ -42,6 +46,10 @@ main = do
             nf
               sumTotientEvalList
               (1, 1000)
+          bench "parList 1..1000" $
+            nf
+              sumTotientParList
+              (1, 1000)
               -- add parallel benchmarks here for 1..1000 once you've
               -- implemented them in src/TotientRange.hs
         ],
@@ -55,6 +63,10 @@ main = do
           bench "evalList 1..3000" $
             nf
               sumTotientEvalList
+              (1, 3000)
+          bench "parList 1..3000" $
+            nf
+              sumTotientParList
               (1, 3000)
               -- add parallel benchmarks here for 1..3000 once you've
               -- implemented them in src/TotientRange.hs
