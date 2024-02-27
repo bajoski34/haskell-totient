@@ -53,7 +53,6 @@ main = do
     --   theProgram = sumTotientParListChunk (lower, upper)
     --   theProgram = sumTotientParListRpar (lower, upper)
     --   theProgram = sumTotientParListChunkRpar (lower, upper)  
-      theProgram = sumTotientParallel (lower, upper)
   theTime <- time_ (evaluate (force theProgram))
   putStrLn (showFFloat (Just 2) theTime "")
 

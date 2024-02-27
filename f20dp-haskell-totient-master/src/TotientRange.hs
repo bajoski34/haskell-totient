@@ -46,10 +46,6 @@ sumTotientParListChunk :: (Int, Int) -> Int
 sumTotientParListChunk (lower, upper) = 
   sum (totients lower upper `using` parListChunk 49 rseq)
 
-sumTotientParallel :: (Int, Int) -> Int
-sumTotientParallel (lower, upper) =
-  sum $ parMap rseq (totients) [lower..upper]
-
 -- parallel, using parList strategy
 sumTotientParListRzero :: (Int, Int) -> Int
 sumTotientParListRzero (lower, upper) = 
