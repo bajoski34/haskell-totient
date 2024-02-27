@@ -63,7 +63,7 @@ main = do
         -- sequential version
         -- sumTotientSequential (lower, upper)
         -- sumTotientEvalList (lower, upper) 
-        sumTotientParList (lower, upper)       
+        -- sumTotientParList (lower, upper)       
   -- replace (comment out) code above in the definition for `result`,
   -- i.e. replace the sum function call line, with parallel versions
   -- of sum totient and put them below
