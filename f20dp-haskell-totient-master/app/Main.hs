@@ -40,38 +40,46 @@ time_ act = do
   return $! end - start
 
 -- | use this function to print the execution time, in seconds.
--- main :: IO ()
--- main = do
---   args <- getArgs
---   let lower = read (head args) :: Int -- lower limit of the interval
---       upper = read (args !! 1) :: Int -- upper limit of the interval
---       -- change the next line for your parallel versions of sum totient
---     --   theProgram = sumTotientSequential (lower, upper)
---     --   theProgram = sumTotientEvalList (lower, upper)
---       theProgram = sumTotientParList (lower, upper)
---   theTime <- time_ (evaluate (force theProgram))
---   putStrLn (showFFloat (Just 2) theTime "")
-
--- -- | Use this function for checkout that sum totient prints the
--- correct result.
 main :: IO ()
 main = do
   args <- getArgs
   let lower = read (head args) :: Int -- lower limit of the interval
       upper = read (args !! 1) :: Int -- upper limit of the interval
-      result =
-        -- sequential version
-        -- sumTotientSequential (lower, upper)
-        -- sumTotientEvalList (lower, upper) 
-        -- sumTotientParList (lower, upper)       
-  -- replace (comment out) code above in the definition for `result`,
-  -- i.e. replace the sum function call line, with parallel versions
-  -- of sum totient and put them below
-  putStrLn
-    ( "Sum of Totients between ["
-        ++ show lower
-        ++ ".."
-        ++ show upper
-        ++ "] is "
-        ++ show result
-    )
+      -- change the next line for your parallel versions of sum totient
+    --   theProgram = sumTotientSequential (lower, upper)
+    --   theProgram = sumTotientEvalList (lower, upper)
+    --   theProgram = sumTotientParList (lower, upper)
+    --   theProgram = sumTotientParList (lower, upper)
+    --   theProgram = sumTotientParListChunk (lower, upper)
+    --   theProgram = sumTotientParListRpar (lower, upper)
+    --   theProgram = sumTotientParListChunkRpar (lower, upper)  
+      theProgram = sumTotientParallel (lower, upper)
+  theTime <- time_ (evaluate (force theProgram))
+  putStrLn (showFFloat (Just 2) theTime "")
+
+-- -- | Use this function for checkout that sum totient prints the
+-- correct result.
+-- main :: IO ()
+-- main = do
+--   args <- getArgs
+--   let lower = read (head args) :: Int -- lower limit of the interval
+--       upper = read (args !! 1) :: Int -- upper limit of the interval
+--       result =
+--         -- sequential version
+--         sumTotientSequential (lower, upper)
+--         -- sumTotientEvalList (lower, upper) 
+--         -- sumTotientParList (lower, upper)
+--         -- sumTotientParListChunk (lower, upper)
+--         -- sumTotientParListRpar (lower, upper)
+--         -- sumTotientParListChunkRpar (lower, upper)       
+--   -- replace (comment out) code above in the definition for `result`,
+--   -- i.e. replace the sum function call line, with parallel versions
+--   -- of sum totient and put them below
+--   putStrLn
+--     ( "Sum of Totients between ["
+--         ++ show lower
+--         ++ ".."
+--         ++ show upper
+--         ++ "] is "
+--         ++ show result
+--     )

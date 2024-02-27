@@ -41,6 +41,30 @@ sumTotientParList :: (Int, Int) -> Int
 sumTotientParList (lower, upper) = 
   sum (totients lower upper `using` parList rseq)
 
+-- sequential, using parList strategy
+sumTotientParListChunk :: (Int, Int) -> Int
+sumTotientParListChunk (lower, upper) = 
+  sum (totients lower upper `using` parListChunk 49 rseq)
+
+sumTotientParallel :: (Int, Int) -> Int
+sumTotientParallel (lower, upper) =
+  sum $ parMap rseq (totients) [lower..upper]
+
+-- parallel, using parList strategy
+sumTotientParListRzero :: (Int, Int) -> Int
+sumTotientParListRzero (lower, upper) = 
+  sum (totients lower upper `using` parList r0)
+
+-- parallel, using parList strategy
+sumTotientParListRpar :: (Int, Int) -> Int
+sumTotientParListRpar (lower, upper) = 
+  sum (totients lower upper `using` parList rpar)
+
+-- parallel, using parListChunk strategy
+sumTotientParListChunkRpar :: (Int, Int) -> Int
+sumTotientParListChunkRpar (lower, upper) = 
+  sum (totients lower upper `using` parListChunk 49 rpar)
+
 -- TODO: add more sum totient implementations below using the
 -- evaluation strategies from the Control.Parallel.Strategies module.
 -- Then:
